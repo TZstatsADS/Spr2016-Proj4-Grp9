@@ -27,7 +27,7 @@ load("www/amzData.RData")
 pal <- brewer.pal(9,"YlGnBu")[-(1:4)]
 
 
-coll <- readRDS("../lib/popularcollapsed.RDS")
+coll <- readRDS("../lib/allreviews.RDS")
 createwc <- function(ASIN) {
   print(ASIN)
   if (ASIN %in% coll$product_productid & coll[coll$product_productid == ASIN,]$review_text != "NA"){
