@@ -12,7 +12,7 @@ movieReviewCount<-table(factor(data$product_productid)) #3568
 popularMovies<-names(movieReviewCount)[movieReviewCount>10] #1408 remove more than 1/2 of the movies
 save(popularMovies,file='C:/Users/ygu/Desktop/columbia/movieShiny/www/popularMovies.RData')
 
-data_part=data[data$product_productid%in%popularMovies,]           #only a part of raw data
+data_part=data[data$product_productid%in%amzData$ASIN,]           #only a part of raw data
 
 #summary(factor(data$product_productid))
 
@@ -36,7 +36,7 @@ for (i in 1:nrow(data_part)){                          #fill the matrix
   user_item[user,movie]=data_part$review_score[i]
   print(i)
 }
-#user_item 68170 ppl 1408 movies
+#user_item 48167 ppl  962 movies
 
 save(user_item,file='C:/Users/ygu/Desktop/columbia/movieShiny/www/user_item.RData')
 

@@ -30,9 +30,37 @@ getAmazonInfo<-function(asin){
   }))
 }
 
+# html_text(html_nodes(read_html('http://www.amazon.com/exec/obidos/ASIN/076780046X'),
+#            xpath="//span[@class='author notFaded']/a"))
+
 #system.time(amzData1<-getAmazonInfo(levels(rawMovies$product_productid)[1:100])) #111.65sec 2min ; 110days
 system.time(amzData1<-getAmazonInfo(popularMovies[1:300])) #111.65sec 2min ; 110days
+system.time(amzData3<-getAmazonInfo(popularMovies[601:842])) #111.65sec 2min ; 110days
+system.time(amzData3.2<-getAmazonInfo(popularMovies[844:900])) #111.65sec 2min ; 110days
+
 amzData1
+amzData1Length<-sapply(1:300,function(i)length(amzData1[[i]]))
+amzData3Length<-sapply(1:242,function(i)length(amzData3[[i]]))
+amzData3.2Length<-sapply(1:57,function(i)length(amzData3.2[[i]]))
+amzData4Length<-sapply(1:300,function(i)length(amzData4[[i]]))
+amzData10Length<-sapply(1:208,function(i)length(amzData10[[i]]))
+
+amzData1Clean<-data.frame(matrix(unlist(amzData1[amzData1Length==4]),nrow=sum(amzData1Length==4), byrow=T))
+amzData3Clean<-data.frame(matrix(unlist(amzData3[amzData3Length==4]),nrow=sum(amzData3Length==4), byrow=T))
+amzData3.2Clean<-data.frame(matrix(unlist(amzData3.2[amzData3.2Length==4]),
+                                   nrow=sum(amzData3.2Length==4), byrow=T))
+amzData4Clean<-data.frame(matrix(unlist(amzData4[amzData4Length==4]),nrow=sum(amzData4Length==4), byrow=T))
+amzData10Clean<-data.frame(matrix(unlist(amzData10[amzData10Length==4]),
+                                  nrow=sum(amzData10Length==4), byrow=T))
+amzData2<-data.frame(amzData2)
+
+amzData<-rbind(amzData1Clean,amzData2,amzData3Clean,amzData3.2Clean,amzData4Clean,amzData10Clean)
+names(amzData)<-c('ASIN','Name','Rating','Reviews')
+
+save(amzData,file="D:/amzData.RData")
+
+#cat(load("D:/amzondata10.RData"))
+
 
 movietxt<-NULL
 for(i in 1:72){
