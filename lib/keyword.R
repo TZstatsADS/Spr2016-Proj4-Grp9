@@ -25,12 +25,3 @@ for ( i in 1: 962 ) {
   }
   save(new.dat,file="output/keywords_clean1.RData")
 }
-
-
-
- getNodeSet(this.url,'//div[@class="content"]')
-
- movie1<-read_html(this.url1)
- html_text(html_nodes(movie1,xpath="//span[@id='productTitle']"))
- html_text(html_nodes(movie1,xpath="//div[@id='averageCustomerReviews']//span[@class='a-icon-alt']"))
- 
