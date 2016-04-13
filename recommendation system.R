@@ -13,6 +13,12 @@ popularMovies<-names(movieReviewCount)[movieReviewCount>10] #1408 remove more th
 save(popularMovies,file='C:/Users/ygu/Desktop/columbia/movieShiny/www/popularMovies.RData')
 
 data_part=data[data$product_productid%in%amzData$ASIN,]           #only a part of raw data
+save(data_part,file='C:/Users/ygu/Desktop/columbia/movieShiny/www/data_part.RData')
+
+users<-unique(data_part$review_userid[data_part$product_productid%in%c('B00006HAXW')])
+movies<-data_part$product_productid[data_part$review_userid%in%users&data_part$review_score>=4]
+newMovies<-movies[!movies%in%c('B00006HAXW')]
+rev(sort(table(newMovies)))
 
 #summary(factor(data$product_productid))
 

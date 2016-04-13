@@ -6,22 +6,28 @@ shinyServer(function(input, output, session) {
       
       asinSelected<-amzData$ASIN[amzData$Name%in%input$moviesLiked]
       
-      user_itemNew<-rbind(user_item,NA)
-      
-      #browser()
-      
-      user_itemNew[48003,as.character(asinSelected)]<-5
-      
-      r <- as(user_itemNew, "realRatingMatrix")
+      # user_itemNew<-rbind(user_item,NA)
+      # 
+      # browser()
+      # 
+      # user_itemNew[48003,as.character(asinSelected)]<-5
+      # 
+      # r <- as(user_itemNew, "realRatingMatrix")
       # r_m <- normalize(r)
       # r_b <- binarize(r_m, minRating=2)
-      # as(r_b, "matrix")
-      # recommenderRegistry$get_entries(dataType = "realRatingMatrix")
+      # # as(r_b, "matrix")
+      # # recommenderRegistry$get_entries(dataType = "realRatingMatrix")
+      # 
+      # r_d <- Recommender(r_b[1:48002], method = "POPULAR")      #train model
+      # recom <- predict(r_d, r_b[48003], n=3)      #make recommendation for 2 users
+      # return(as(recom,"list")[[1]])
       
-      r_d <- Recommender(r[1:48002], method = "POPULAR")      #train model
-      recom <- predict(r_d, r[48003], n=3)      #make recommendation for 2 users
+      users<-unique(data_part$review_userid[data_part$product_productid%in%asinSelected])
+      movies<-data_part$product_productid[data_part$review_userid%in%users&data_part$review_score>=4]
+      newMovies<-movies[!movies%in%asinSelected]
       
-      return(as(recom,"list")[[1]])
+      return(names(rev(sort(table(newMovies))))[1:3])
+      
       
       #new_user_item<-
       # result<-list()
@@ -107,24 +113,89 @@ shinyServer(function(input, output, session) {
     output$Rec1Name<-renderText({
       
       data<-Data()[1]
-      name<-as.character(amzData$Name[amzData$ASIN==data])
+      name<-gsub('\\[.*|[[:punct:]]','',as.character(amzData$Name[amzData$ASIN==data]))
       return(name)
       
     })
     
-    url<-read_html("http://www.amazon.com/exec/obidos/ASIN/B00871C0DO")
-    
-    src=gsub('.*src=\\\"|\".*','',
-             as.character(html_nodes(url,xpath="//div[@data-key='1']//div[@class='photo-box pb-90s']")))
-    html_nodes(url,xpath="//div[@class='imgTagWrapper']")
-    
     output$Rec1image = renderUI({
-      if(is.null(input$Map_marker_click))
-        return(NULL)
+      data<-Data()[1]
+      #browser()
+      name<-gsub('\\[.*|[[:punct:]]','',as.character(amzData$Name[amzData$ASIN==data]))
+      # omdb.entry=search_by_title(name)
+      # result<-data.frame(find_by_id(omdb.entry$imdbID[1], include_tomatoes=T))
+      url<-read_html(paste0('http://www.rottentomatoes.com/search/?search=',gsub(' ','+',name)))
+      
+      if(length(gsub('.*src=\\\"|\".*','',
+                     html_nodes(url,xpath="//div[@id='movie-image-section']//img"))!=0))
+        src<-gsub('.*src=\\\"|\".*','',html_nodes(url,xpath="//div[@id='movie-image-section']//img"))
       else{
-        src<-yelpData()[[1]]
-        return(tags$img(src=src))
+        newSub<-gsub('.*href="|\\/">.*','',
+                     html_nodes(url,xpath="//div[@class='nomargin media-heading bold']/a"))
+        url2<-read_html(paste0('http://www.rottentomatoes.com/',newSub[1]))
+        
+        src<-gsub('.*src=\\\"|\".*','',html_nodes(url2,xpath="//div[@id='movie-image-section']//img"))
       }
+
+      return(tags$img(src=src))
+    })
+    
+    
+    output$Rec2Name<-renderText({
+      
+      data<-Data()[2]
+      name<-gsub('\\[.*|[[:punct:]]','',as.character(amzData$Name[amzData$ASIN==data]))
+      return(name)
+      
+    })
+    
+    output$Rec2image = renderUI({
+      data<-Data()[2]
+      #browser()
+      name<-gsub('\\[.*|[[:punct:]]','',as.character(amzData$Name[amzData$ASIN==data]))
+      # omdb.entry=search_by_title(name)
+      # result<-data.frame(find_by_id(omdb.entry$imdbID[1], include_tomatoes=T))
+      url<-read_html(paste0('http://www.rottentomatoes.com/search/?search=',gsub(' ','+',name)))
+      
+      if(length(gsub('.*src=\\\"|\".*','',
+                     html_nodes(url,xpath="//div[@id='movie-image-section']//img"))!=0))
+        src<-gsub('.*src=\\\"|\".*','',html_nodes(url,xpath="//div[@id='movie-image-section']//img"))
+      else{
+        newSub<-gsub('.*href="|\\/">.*','',
+                     html_nodes(url,xpath="//div[@class='nomargin media-heading bold']/a"))
+        url2<-read_html(paste0('http://www.rottentomatoes.com/',newSub[1]))
+        
+        src<-gsub('.*src=\\\"|\".*','',html_nodes(url2,xpath="//div[@id='movie-image-section']//img"))
+      }
+      return(tags$img(src=src))
+    })
+    
+    output$Rec3Name<-renderText({
+      
+      data<-Data()[3]
+      name<-gsub('\\[.*|[[:punct:]]','',as.character(amzData$Name[amzData$ASIN==data]))
+      return(name)
+      
+    })
+    
+    output$Rec3image = renderUI({
+      data<-Data()[3]
+      #browser()
+      name<-gsub('\\[.*|[[:punct:]]','',as.character(amzData$Name[amzData$ASIN==data]))
+      # omdb.entry=search_by_title(name)
+      # result<-data.frame(find_by_id(omdb.entry$imdbID[1], include_tomatoes=T))
+      url<-read_html(paste0('http://www.rottentomatoes.com/search/?search=',gsub(' ','+',name)))
+      if(length(gsub('.*src=\\\"|\".*','',
+                     html_nodes(url,xpath="//div[@id='movie-image-section']//img"))!=0))
+        src<-gsub('.*src=\\\"|\".*','',html_nodes(url,xpath="//div[@id='movie-image-section']//img"))
+      else{
+        newSub<-gsub('.*href="|\\/">.*','',
+                     html_nodes(url,xpath="//div[@class='nomargin media-heading bold']/a"))
+        url2<-read_html(paste0('http://www.rottentomatoes.com/',newSub[1]))
+        
+        src<-gsub('.*src=\\\"|\".*','',html_nodes(url2,xpath="//div[@id='movie-image-section']//img"))
+      }
+      return(tags$img(src=src))
     })
     # 
     # output$clickedNameAddress<-renderText({

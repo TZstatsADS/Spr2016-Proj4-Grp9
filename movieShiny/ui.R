@@ -44,22 +44,30 @@ dashboardPage(
                 # column(width = 7,
                 #        box(width = NULL, solidHeader = TRUE,
                 #            leafletOutput("Map"))),
-                column(width=5,
+                column(width=4,
                        box(title = "First Recommendation", status = "primary",
                            width=NULL,solidHeader=T,
                            textOutput("Rec1Name"),
                            br(),
-                           uiOutput('Rec1image'),
-                           br()
-                           # textOutput("clickedNameAddress"),
-                           # textOutput("clickedNameGrade"),
-                           # textOutput("clickedNameCritical"),
-                           # textOutput("clickedNameRating"),
-                           # textOutput("clickedNameReviewCount"),
-                           # textOutput("clickedNamePriceRange"),
-                           # textOutput("clickedNamePhone")
+                           uiOutput('Rec1image')
                            )
+                       ),
+                column(width=4,
+                       box(title = "Second Recommendation", status = "primary",
+                           width=NULL,solidHeader=T,
+                           textOutput("Rec2Name"),
+                           br(),
+                           uiOutput('Rec2image')
                        )
+                ),
+                column(width=4,
+                       box(title = "Third Recommendation", status = "primary",
+                           width=NULL,solidHeader=T,
+                           textOutput("Rec3Name"),
+                           br(),
+                           uiOutput('Rec3image')
+                       )
+                )
                 )#,
               # fluidRow(column(width=5,
               #                 selectInput("nameId","Restaurant Id",c("",sort(uniqueRestau5$NameId)),

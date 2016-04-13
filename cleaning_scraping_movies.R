@@ -8,7 +8,9 @@ rawMovies$review_helpfulness<-factor(rawMovies$review_helpfulness)
 summary(rawMovies)
 dim(rawMovies) #7911696       4
 
-movie1<-read_html(paste("http://www.amazon.com/exec/obidos/ASIN/B007FQDPL8"))
+movie1<-read_html(paste("http://www.amazon.com/exec/obidos/ASIN/B000AMWIVM"))
+gsub('.*src=\\\"|\".*','',
+     html_nodes(movie1,xpath="//div[@id='main-image-container']//div[@id='imgTagWrapperId']/img"))
 html_text(html_nodes(movie1,xpath="//span[@id='productTitle']"))
 html_text(html_nodes(movie1,xpath="//div[@id='averageCustomerReviews']//span[@class='a-icon-alt']"))
 html_text(html_nodes(movie1,xpath="//div[@id='averageCustomerReviews']//span[@id='acrCustomerReviewText']"))

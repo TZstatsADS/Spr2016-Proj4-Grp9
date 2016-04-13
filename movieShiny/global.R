@@ -11,11 +11,12 @@ library(dplyr)
 library(tidyr)
 library(hexbin)
 library(recommenderlab)
+library(omdbapi)
 
 options(stringsAsFactors = F)
 
 
-load("www/user_item.RData")
+load("www/data_part.RData")
 load("www/amzData.RData")
 
 
