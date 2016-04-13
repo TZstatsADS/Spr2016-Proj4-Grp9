@@ -10,30 +10,69 @@
              font-size: 30px;
              font-weight: bold;
             }            
-#clickedNameAddress{color: Black;
-             font-size: 20px;
-            }
-#clickedNameGrade{color: Black;
+
+#Rec1Rating{color: Black;
              font-size: 20px;
             }
             
-#clickedNameCritical{color: Black;
+#Rec1Reviews{color: Black;
              font-size: 20px;
+            }  
+#Rec1BotReviewTitle{color: Blue;
+             font-size: 30px;
+             font-weight: bold;
+            }            
+#Rec1BotReview{color: Black;
+             font-size: 20px;
+            } 
+#Rec1TopReviewTitle{color: Blue;
+             font-size: 30px;
+             font-weight: bold;
             }
-#clickedNameRating{color: Black;
+#Rec1TopReview{color: Black;
+             font-size: 20px;
+            }              
+
+#Rec2Rating{color: Black;
              font-size: 20px;
             }
             
-#clickedNameReviewCount{color: Black;
+#Rec2Reviews{color: Black;
              font-size: 20px;
-            }     
-
-#clickedNamePhone{color: Black;
+            }       
+#Rec2BotReviewTitle{color: Blue;
+             font-size: 30px;
+             font-weight: bold;
+            }            
+#Rec2BotReview{color: Black;
              font-size: 20px;
-            }         
-
-#clickedNamePriceRange{color: Black;
+            } 
+#Rec2TopReviewTitle{color: Blue;
+             font-size: 30px;
+             font-weight: bold;
+            }
+#Rec2TopReview{color: Black;
              font-size: 20px;
-            }                  
+            }
+#Rec3Rating{color: Black;
+             font-size: 20px;
+            }
+            
+#Rec3Reviews{color: Black;
+             font-size: 20px;
+            }                   
 
-   
+#Rec3BotReviewTitle{color: Blue;
+             font-size: 30px;
+             font-weight: bold;
+            }            
+#Rec3BotReview{color: Black;
+             font-size: 20px;
+            } 
+#Rec3TopReviewTitle{color: Blue;
+             font-size: 30px;
+             font-weight: bold;
+            }
+#Rec3TopReview{color: Black;
+             font-size: 20px;
+            }

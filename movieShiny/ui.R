@@ -1,4 +1,4 @@
-dbHeader<-dashboardHeader(title='Movie Recommendation')
+dbHeader<-dashboardHeader(title='Popcorn Time')
 
 dashboardPage(
 
@@ -8,18 +8,10 @@ dashboardPage(
 
   dashboardSidebar(
     sidebarMenu(id='sidebarmenu',
-                menuItem("Recommendation",tabName="recomm",icon=icon("pie-chart"))#,
-                # menuItem("Restaurant Locator",tabName="locator",icon=icon("beer"))
-    ),
-    
-    # textInput("location","Your location:",'Columbia University NY, NYC'),
-    # sliderInput("distance","Max dist from your location (mi)",
-    #             min = 1, max = 21, value = 1),
+                menuItem("Recommendation",tabName="recomm",icon=icon("pie-chart"))#,      
+                ),
     
     selectInput("moviesLiked","Movies you liked:",levels(amzData$Name),'Apocalypse Now',multiple=T),
-    # sliderInput("minReview","Minimum # of reviews on Yelp",min = 1, max = 100, value = 1),
-    # sliderInput("minStar","Minimum # of stars on Yelp",min = 1, max = 5, value = 1),
-    # sliderInput("minSafetyScore","Minimum safety score",min = 0, max = 1, value = 0),
     submitButton("Submit",width='100%')
    
     
@@ -29,15 +21,6 @@ dashboardPage(
     includeCSS('./www/custom.css'),
     tabItems(
       
-      # tabItem(tabName = "recomm",
-      #         fluidRow(
-      #           column(width=12,
-      #                  box(width=NULL,
-      #                      title=tagList(shiny::icon("pie-chart"),"Cuisine distribution at your location"),
-      #                      status='primary',
-      #                      collapsible=T,
-      #                      showOutput("pieChart","highcharts")
-      #                  )))),
       
       tabItem(tabName='recomm',
               fluidRow(
@@ -50,7 +33,16 @@ dashboardPage(
                            textOutput("Rec1Name"),
                            br(),
                            uiOutput('Rec1image'),
-                           imageOutput("rec1wc")
+                           br(),
+                           textOutput("Rec1Rating"),
+                           textOutput("Rec1Reviews"),
+                           br(),
+                           imageOutput("rec1wc"),
+                           textOutput("Rec1BotReviewTitle"),
+                           textOutput("Rec1BotReview"),
+                           br(),
+                           textOutput("Rec1TopReviewTitle"),
+                           textOutput("Rec1TopReview")
                            )
                        ),
                 column(width=4,
@@ -59,7 +51,15 @@ dashboardPage(
                            textOutput("Rec2Name"),
                            br(),
                            uiOutput('Rec2image'),
-                           imageOutput("rec2wc")
+                           br(),
+                           textOutput("Rec2Rating"),
+                           textOutput("Rec2Reviews"),
+                           imageOutput("rec2wc"),
+                           textOutput("Rec2BotReviewTitle"),
+                           textOutput("Rec2BotReview"),
+                           br(),
+                           textOutput("Rec2TopReviewTitle"),
+                           textOutput("Rec2TopReview")
                        )
                 ),
                 column(width=4,
@@ -68,14 +68,18 @@ dashboardPage(
                            textOutput("Rec3Name"),
                            br(),
                            uiOutput('Rec3image'),
-                           imageOutput("rec3wc")
+                           br(),
+                           textOutput("Rec3Rating"),
+                           textOutput("Rec3Reviews"),
+                           imageOutput("rec3wc"),
+                           textOutput("Rec3BotReviewTitle"),
+                           textOutput("Rec3BotReview"),
+                           br(),
+                           textOutput("Rec3TopReviewTitle"),
+                           textOutput("Rec3TopReview")
                        )
                 )
-                )#,
-              # fluidRow(column(width=5,
-              #                 selectInput("nameId","Restaurant Id",c("",sort(uniqueRestau5$NameId)),
-              #                             selected="",multiple=F,width="100%")))
-              # )
+                )
       )
     )
 
