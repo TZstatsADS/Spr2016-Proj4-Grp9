@@ -25,6 +25,7 @@ for ( i in 1: 962 ) {
   }
   save(new.dat,file="C:/Users/ygu/Desktop/columbia/movieShiny/www/new.dat.RData")
 }
+<<<<<<< HEAD
 
 amzData<-new.dat[!duplicated(new.dat$X2),]
 colnames(amzData)<-c('ASIN','Name','Rating','Reviews','Name1','Name2','Name3','Keyword1','Keyword2',
@@ -36,3 +37,5 @@ colnames(amzData)<-c('ASIN','Name','Rating','Reviews','Name1','Name2','Name3','K
  html_text(html_nodes(movie1,xpath="//span[@id='productTitle']"))
  html_text(html_nodes(movie1,xpath="//div[@id='averageCustomerReviews']//span[@class='a-icon-alt']"))
  
+=======
+>>>>>>> origin/master
