@@ -105,24 +105,27 @@ shinyServer(function(input, output, session) {
     # })
     # 
     output$Rec1Name<-renderText({
-      #browser()
-      # if(is.null(input$Map_marker_click))
-      #   return(NULL)
-      # else{
-        data<-Data()[1]
-        name<-as.character(amzData$Name[amzData$ASIN==data])
-        return(name)
-      # }
+      
+      data<-Data()[1]
+      name<-as.character(amzData$Name[amzData$ASIN==data])
+      return(name)
+      
     })
-    # 
-    # output$image = renderUI({
-    #   if(is.null(input$Map_marker_click))
-    #     return(NULL)
-    #   else{
-    #     src<-yelpData()[[1]]
-    #     return(tags$img(src=src))
-    #   }
-    # })
+    
+    url<-read_html("http://www.amazon.com/exec/obidos/ASIN/B00871C0DO")
+    
+    src=gsub('.*src=\\\"|\".*','',
+             as.character(html_nodes(url,xpath="//div[@data-key='1']//div[@class='photo-box pb-90s']")))
+    html_nodes(url,xpath="//div[@class='imgTagWrapper']")
+    
+    output$Rec1image = renderUI({
+      if(is.null(input$Map_marker_click))
+        return(NULL)
+      else{
+        src<-yelpData()[[1]]
+        return(tags$img(src=src))
+      }
+    })
     # 
     # output$clickedNameAddress<-renderText({
     #   #browser()

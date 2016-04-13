@@ -49,7 +49,7 @@ dashboardPage(
                            width=NULL,solidHeader=T,
                            textOutput("Rec1Name"),
                            br(),
-                           #uiOutput('image'),
+                           uiOutput('Rec1image'),
                            br()
                            # textOutput("clickedNameAddress"),
                            # textOutput("clickedNameGrade"),
