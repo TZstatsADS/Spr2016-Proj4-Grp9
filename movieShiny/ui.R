@@ -49,7 +49,8 @@ dashboardPage(
                            width=NULL,solidHeader=T,
                            textOutput("Rec1Name"),
                            br(),
-                           uiOutput('Rec1image')
+                           uiOutput('Rec1image'),
+                           imageOutput("rec1wc")
                            )
                        ),
                 column(width=4,
@@ -57,7 +58,8 @@ dashboardPage(
                            width=NULL,solidHeader=T,
                            textOutput("Rec2Name"),
                            br(),
-                           uiOutput('Rec2image')
+                           uiOutput('Rec2image'),
+                           imageOutput("rec2wc")
                        )
                 ),
                 column(width=4,
@@ -65,7 +67,8 @@ dashboardPage(
                            width=NULL,solidHeader=T,
                            textOutput("Rec3Name"),
                            br(),
-                           uiOutput('Rec3image')
+                           uiOutput('Rec3image'),
+                           imageOutput("rec3wc")
                        )
                 )
                 )#,

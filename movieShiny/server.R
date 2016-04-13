@@ -24,8 +24,9 @@ shinyServer(function(input, output, session) {
       
       users<-unique(data_part$review_userid[data_part$product_productid%in%asinSelected])
       movies<-data_part$product_productid[data_part$review_userid%in%users&data_part$review_score>=4]
-      newMovies<-movies[!movies%in%asinSelected]
       
+      newMovies<-movies[!movies%in%asinSelected]
+      # print(names(rev(sort(table(newMovies))))[1:3])
       return(names(rev(sort(table(newMovies))))[1:3])
       
       
@@ -140,6 +141,21 @@ shinyServer(function(input, output, session) {
       return(tags$img(src=src))
     })
     
+    output$rec1wc <- renderPlot({
+      # print(input$moviesLiked)
+      
+      ASIN <- Data()[1]
+      # print(movieName)
+      #       for(i in movieName) {
+      #         print( i)
+      # print(amzData[amzData$Name == movieName,])
+      # ASIN <- amzData[amzData$Name == movieName,]$ASIN
+      # print(as.character(ASIN))
+      createwc(as.character(ASIN))
+      # }
+      
+    })
+    
     
     output$Rec2Name<-renderText({
       
@@ -170,6 +186,21 @@ shinyServer(function(input, output, session) {
       return(tags$img(src=src))
     })
     
+    output$rec2wc <- renderPlot({
+      # print(input$moviesLiked)
+      
+      ASIN <- Data()[2]
+      # print(movieName)
+      #       for(i in movieName) {
+      #         print( i)
+      # print(amzData[amzData$Name == movieName,])
+      # ASIN <- amzData[amzData$Name == movieName,]$ASIN
+      # print(as.character(ASIN))
+      createwc(as.character(ASIN))
+      # }
+      
+    })
+    
     output$Rec3Name<-renderText({
       
       data<-Data()[3]
@@ -197,6 +228,23 @@ shinyServer(function(input, output, session) {
       }
       return(tags$img(src=src))
     })
+    
+    output$rec3wc <- renderPlot({
+      # print(input$moviesLiked)
+      
+      ASIN <- Data()[3]
+      # print(movieName)
+      #       for(i in movieName) {
+      #         print( i)
+      # print(amzData[amzData$Name == movieName,])
+      # ASIN <- amzData[amzData$Name == movieName,]$ASIN
+      # print(as.character(ASIN))
+      createwc(as.character(ASIN))
+      # }
+      
+    })
+    
+    
     # 
     # output$clickedNameAddress<-renderText({
     #   #browser()
