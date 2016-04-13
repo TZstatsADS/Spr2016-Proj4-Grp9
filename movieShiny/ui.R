@@ -16,11 +16,11 @@ dashboardPage(
     # sliderInput("distance","Max dist from your location (mi)",
     #             min = 1, max = 21, value = 1),
     
-    selectInput("moviesLiked","Movies you liked:",levels(amzData$Name),'Apocalypse Now',multiple=T)#,
+    selectInput("moviesLiked","Movies you liked:",levels(amzData$Name),'Apocalypse Now',multiple=T),
     # sliderInput("minReview","Minimum # of reviews on Yelp",min = 1, max = 100, value = 1),
     # sliderInput("minStar","Minimum # of stars on Yelp",min = 1, max = 5, value = 1),
     # sliderInput("minSafetyScore","Minimum safety score",min = 0, max = 1, value = 0),
-    #submitButton("Submit",width='100%')
+    submitButton("Submit",width='100%')
    
     
     ),
@@ -45,9 +45,9 @@ dashboardPage(
                 #        box(width = NULL, solidHeader = TRUE,
                 #            leafletOutput("Map"))),
                 column(width=5,
-                       box(title = "Selected Restaurant", status = "primary",
+                       box(title = "First Recommendation", status = "primary",
                            width=NULL,solidHeader=T,
-                           #textOutput("clickedName"),
+                           textOutput("Rec1Name"),
                            br(),
                            #uiOutput('image'),
                            br()

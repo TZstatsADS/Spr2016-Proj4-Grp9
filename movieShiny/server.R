@@ -4,6 +4,25 @@ shinyServer(function(input, output, session) {
 
     Data<-reactive({
       
+      asinSelected<-amzData$ASIN[amzData$Name%in%input$moviesLiked]
+      
+      user_itemNew<-rbind(user_item,NA)
+      
+      #browser()
+      
+      user_itemNew[48003,as.character(asinSelected)]<-5
+      
+      r <- as(user_itemNew, "realRatingMatrix")
+      # r_m <- normalize(r)
+      # r_b <- binarize(r_m, minRating=2)
+      # as(r_b, "matrix")
+      # recommenderRegistry$get_entries(dataType = "realRatingMatrix")
+      
+      r_d <- Recommender(r[1:48002], method = "POPULAR")      #train model
+      recom <- predict(r_d, r[48003], n=3)      #make recommendation for 2 users
+      
+      return(as(recom,"list")[[1]])
+      
       #new_user_item<-
       # result<-list()
       # result[[1]]<-uniqueRestau5[uniqueRestau5$Cuisine%in%input$cuisine&
@@ -85,15 +104,16 @@ shinyServer(function(input, output, session) {
     #   }
     # })
     # 
-    # output$clickedName<-renderText({
-    #   #browser()
-    #   if(is.null(input$Map_marker_click))
-    #     return(NULL)
-    #   else{
-    #     data<-Data()[[1]]
-    #     return(as.character(data$businesses.name[data$NameId==input$Map_marker_click$id]))
-    #   }
-    # })
+    output$Rec1Name<-renderText({
+      #browser()
+      # if(is.null(input$Map_marker_click))
+      #   return(NULL)
+      # else{
+        data<-Data()[1]
+        name<-as.character(amzData$Name[amzData$ASIN==data])
+        return(name)
+      # }
+    })
     # 
     # output$image = renderUI({
     #   if(is.null(input$Map_marker_click))
