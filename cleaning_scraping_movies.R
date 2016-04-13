@@ -57,7 +57,7 @@ amzData2<-data.frame(amzData2)
 amzData<-rbind(amzData1Clean,amzData2,amzData3Clean,amzData3.2Clean,amzData4Clean,amzData10Clean)
 names(amzData)<-c('ASIN','Name','Rating','Reviews')
 
-save(amzData,file="D:/amzData.RData")
+save(amzData,file="C:/Users/ygu/Desktop/columbia/movieShiny/www/amzData.RData")
 
 #cat(load("D:/amzondata10.RData"))
 

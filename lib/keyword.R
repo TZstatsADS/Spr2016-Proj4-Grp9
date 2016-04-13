@@ -23,10 +23,12 @@ for ( i in 1: 962 ) {
       new.dat[i,9:12] = this.movie.keywords[5:8]
     }
   }
-  save(new.dat,file="output/keywords_clean1.RData")
+  save(new.dat,file="C:/Users/ygu/Desktop/columbia/movieShiny/www/new.dat.RData")
 }
 
-
+amzData<-new.dat[!duplicated(new.dat$X2),]
+colnames(amzData)<-c('ASIN','Name','Rating','Reviews','Name1','Name2','Name3','Keyword1','Keyword2',
+                     'Keyword3','Keyword4','Keyword5')
 
  getNodeSet(this.url,'//div[@class="content"]')
 

@@ -36,7 +36,7 @@ for (i in 1:nrow(data_part)){                          #fill the matrix
   user_item[user,movie]=data_part$review_score[i]
   print(i)
 }
-#user_item 48167 ppl  962 movies
+#user_item 48002 ppl  953 movies
 
 save(user_item,file='C:/Users/ygu/Desktop/columbia/movieShiny/www/user_item.RData')
 
