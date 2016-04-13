@@ -31,7 +31,7 @@ getAmazonInfo<-function(asin){
 }
 
 #system.time(amzData1<-getAmazonInfo(levels(rawMovies$product_productid)[1:100])) #111.65sec 2min ; 110days
-system.time(amzData1<-getAmazonInfo(popularMovies)) #111.65sec 2min ; 110days
+system.time(amzData1<-getAmazonInfo(popularMovies[1:4])) #111.65sec 2min ; 110days
 amzData1
 
 movietxt<-NULL

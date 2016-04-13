@@ -10,6 +10,7 @@ data$product_productid<-gsub('\\.0','',data$product_productid)
 
 movieReviewCount<-table(factor(data$product_productid)) #3568
 popularMovies<-names(movieReviewCount)[movieReviewCount>10] #1408 remove more than 1/2 of the movies
+save(popularMovies,file='C:/Users/ygu/Desktop/columbia/movieShiny/www/popularMovies.RData')
 
 data_part=data[data$product_productid%in%popularMovies,]           #only a part of raw data
 
