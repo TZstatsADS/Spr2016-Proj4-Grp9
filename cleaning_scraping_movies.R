@@ -15,6 +15,11 @@ html_text(html_nodes(movie1,xpath="//span[@id='productTitle']"))
 html_text(html_nodes(movie1,xpath="//div[@id='averageCustomerReviews']//span[@class='a-icon-alt']"))
 html_text(html_nodes(movie1,xpath="//div[@id='averageCustomerReviews']//span[@id='acrCustomerReviewText']"))
 
+youtube<-read_html(paste0("https://www.youtube.com/results?search_query=goodfellas+trailer"))
+trailerURL<-gsub('.*href=\\\"|\".*','',html_nodes(youtube,xpath="//h3[@class='yt-lockup-title ']")[1])
+HTML(paste0('<iframe width="200" height="100" src="//www.youtube.com,',trailerURL,
+            '" frameborder="0" allowfullscreen></iframe>')
+
 getAmazonInfo<-function(asin){
   t(sapply(1:length(asin),function(i){
     cat(i,'\n')
