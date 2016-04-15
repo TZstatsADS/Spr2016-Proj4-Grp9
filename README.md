@@ -3,23 +3,15 @@
 
 Term: Spring 2016
 
-In this project, we will explore relational data where the data were collected to have information on a set of individuals and on their relations. Part of the big data hype has been fueled by the availability of the huge amount of online human generated information on social networks, individual rating/preferences on products, opinions and views shared via social media (such as facebook, twitter, etc). Topics in this area include
+In this project, we will explore relational data where the data were collected to have information on a set of individuals and on their relations. Part of the big data hype has been fueled by the availability of the huge amount of online human generated information on social networks, individual rating/preferences on products, opinions and views shared via social media (such as facebook, twitter, etc). 
 
-- Collective filtering
-- Clustering/community detection
-- Network analysis
-- Identity resolution
+Our team built a movie recommendation Shiny app using the provided data and info scraped from rotten tomatoes and IMDB. The app is located under lib/movieShiny and on https://yueshengu.shinyapps.io/popcornTime/ 
 
-Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
+A PDF of our presentation slides can be found in doc folder
 
-```
-proj/
-├── lib/
-├── data/
-├── doc/
-├── figs/
-└── output/
-```
+Team members: Husam Shakir Abdul-Kafi, Yimin Zhang, Yue Shen Gu, Weihan Li, Tara Shui
 
-Please see each subfolder for a README file.
+All members contributed equally to this project.
+
+
 
